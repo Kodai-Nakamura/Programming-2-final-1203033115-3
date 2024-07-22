@@ -4,43 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StartActivity">
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/exerciseTime"
+        android:id="@+id/timeRemaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercise Time: 00:00"
-        android:textSize="24sp"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:id="@+id/distanceCovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distance: 0.00 meters"
+        android:text="Time Remaining: 00:00"
         android:textSize="24sp"
         android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/stopButton"
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop"
+        android:text="Start"
         android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/restartButton"
+        android:id="@+id/recordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Restart"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone" />
+        android:text="Records"
+        android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/finishButton"
+        android:id="@+id/gameListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finish"
+        android:text="Game List"
         android:layout_marginBottom="16dp" />
 </LinearLayout>

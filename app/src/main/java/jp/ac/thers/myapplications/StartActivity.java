@@ -13,16 +13,11 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import androidx.room.Room;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
-import jp.ac.thers.myapplications.database.AppDatabase;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import com.google.android.gms.location.LocationServices;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -42,8 +37,6 @@ public class StartActivity extends AppCompatActivity {
     private LocationCallback locationCallback;
     private Location lastLocation;
     private float totalDistance;
-
-    private AppDatabase db;
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
@@ -66,9 +59,6 @@ public class StartActivity extends AppCompatActivity {
 
         totalDistance = 0f;
         lastLocation = null;
-
-        // データベースインスタンスの取得
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "records-db").build();
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -119,10 +109,6 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 handler.removeCallbacks(updateTimerThread);
                 fusedLocationClient.removeLocationUpdates(locationCallback);
-
-                // データを保存
-                saveRecord();
-
                 finish();
             }
         });
@@ -175,34 +161,6 @@ public class StartActivity extends AppCompatActivity {
             handler.postDelayed(this, 1000);
         }
     };
-
-    private void saveRecord() {
-        // 運動の終了時間を計算
-        int totalTimeInMinutes = (int) (updatedTime / 60000);
-
-        // 現在の日付を取得
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-        // レコードを作成
-        Record record = new Record();
-        record.date = currentDate;
-        record.distance = totalDistance;
-        record.exerciseTime = totalTimeInMinutes;
-        record.resultTime = calculateResultTime(totalDistance, totalTimeInMinutes);
-
-        // データベースに保存
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                db.recordDao().insert(record);
-            }
-        }).start();
-    }
-
-    private int calculateResultTime(float distance, int exerciseTime) {
-        // 任意の計算式で結果の時間を算出（例として単純に運動時間を返す）
-        return exerciseTime;
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
