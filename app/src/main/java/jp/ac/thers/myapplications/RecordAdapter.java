@@ -1,5 +1,6 @@
 package jp.ac.thers.myapplications;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,44 +8,48 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordViewHolder> {
+public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder> {
 
-    private List<Record> recordList;
+    private Context context;
+    private List<Record> records;
 
-    public RecordAdapter(List<Record> recordList) {
-        this.recordList = recordList;
-    }
-
-    @Override
-    public RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.record_item, parent, false);
-        return new RecordViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(RecordViewHolder holder, int position) {
-        Record record = recordList.get(position);
-        holder.date.setText(record.getDate());
-        holder.distance.setText(String.valueOf(record.getDistance()));
-        holder.exerciseTime.setText(String.valueOf(record.getExerciseTime()));
-        holder.resultTime.setText(String.valueOf(record.getResultTime()));
+    public RecordAdapter(Context context, List<Record> records) {
+        this.context = context;
+        this.records = records;
     }
 
     @Override
     public int getItemCount() {
-        return recordList.size();
+        return records.size();
     }
 
-    public static class RecordViewHolder extends RecyclerView.ViewHolder {
-        public TextView date, distance, exerciseTime, resultTime;
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.record_item, parent, false);
+        return new ViewHolder(view);
+    }
 
-        public RecordViewHolder(View view) {
-            super(view);
-            date = view.findViewById(R.id.date);
-            distance = view.findViewById(R.id.distance);
-            exerciseTime = view.findViewById(R.id.exerciseTime);
-            resultTime = view.findViewById(R.id.resultTime);
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Record record = records.get(position);
+        holder.dateTextView.setText(String.format("開始: %s\n終了: %s", record.getStartTime(), record.getEndTime()));
+        holder.exerciseTimeTextView.setText(String.format("勉強時間: %s", record.getFormattedExerciseTime()));
+        holder.surveyResultTextView.setText(String.format("アンケート結果: %s", record.getSurveyResult()));
+        holder.remainingTimeTextView.setText(String.format("残り時間: %s", record.getFormattedRemainingTime()));
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView dateTextView;
+        TextView exerciseTimeTextView;
+        TextView surveyResultTextView;
+        TextView remainingTimeTextView;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+            exerciseTimeTextView = itemView.findViewById(R.id.exerciseTimeTextView);
+            surveyResultTextView = itemView.findViewById(R.id.surveyResultTextView);
+            remainingTimeTextView = itemView.findViewById(R.id.remainingTimeTextView);
         }
     }
 }

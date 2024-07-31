@@ -1,37 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/timeRemaining"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time Remaining: 00:00"
-        android:textSize="24sp"
-        android:layout_marginBottom="16dp" />
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:layout_marginBottom="16dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/recordButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Records"
-        android:layout_marginBottom="16dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="72dp"
+            android:padding="16dp"
+            android:background="#80000000">
 
-    <Button
-        android:id="@+id/gameListButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Game List"
-        android:layout_marginBottom="16dp" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/timeRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="残り時間\n00:00"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_light"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="スタート"
+            android:layout_marginBottom="72dp"
+            android:padding="16dp"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:background="#80000000" />
+
+        <Button
+            android:id="@+id/recordButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="記録"
+            android:layout_marginBottom="72dp"
+            android:padding="16dp"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:background="#80000000" />
+
+        <Button
+            android:id="@+id/gameListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ゲームリスト"
+            android:layout_marginBottom="72dp"
+            android:padding="16dp"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:background="#80000000" />
+    </LinearLayout>
+</RelativeLayout>

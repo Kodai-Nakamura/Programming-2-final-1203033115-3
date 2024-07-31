@@ -1,46 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".StartActivity">
 
-    <TextView
-        android:id="@+id/exerciseTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exercise Time: 00:00"
-        android:textSize="24sp"
-        android:layout_marginBottom="16dp" />
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_study" />
 
-    <TextView
-        android:id="@+id/distanceCovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distance: 0.00 meters"
-        android:textSize="24sp"
-        android:layout_marginBottom="16dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/stopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
-        android:layout_marginBottom="16dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="72dp"
+            android:padding="16dp"
+            android:background="#80000000">
 
-    <Button
-        android:id="@+id/restartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Restart"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="勉強時間："
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="#FFA500" /> <!--淡いいい感じの色-->
 
-    <Button
-        android:id="@+id/finishButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Finish"
-        android:layout_marginBottom="16dp" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/timerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ストップ"
+            android:layout_marginBottom="72dp"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="#80000000"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/finishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="終了"
+            android:layout_marginBottom="96dp"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:background="#80000000"
+        android:layout_gravity="center_horizontal" />
+
+        <!-- Wrapped the Timer and 00:00 in a single LinearLayout -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="32dp"
+            android:background="#80000000"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="タイマー"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/timerMinutesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:textSize="48sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/timerSeparatorTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textSize="48sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/timerSecondsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:textSize="48sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/startTimerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="スタート"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:background="#80000000"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/stopTimerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ストップ"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:background="#80000000"
+                android:visibility="gone"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/resetTimerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="リセット"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:background="#80000000"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
